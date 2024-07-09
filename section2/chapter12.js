@@ -22,9 +22,11 @@ function freezeFood(food, callback) {
 }
 
 orderFood((food) => {
-  console.loo(food);
+  console.log(food);
   cooldownFood(food, (cooldownedFood) => {
     console.log(cooldownedFood);
     freezeFood(food, (freezedFood) => console.log(freezedFood));
   });
 });
+
+console.log(Math.ceil(12 / 3));
