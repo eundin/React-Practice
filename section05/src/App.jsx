@@ -1,26 +1,31 @@
+import { useState } from "react";
 import "./App.css";
-import Button from "./components/Button";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Main from "./components/Main";
 
 function App() {
-  const buttonProps = {
-    text: "메일",
-    color: "red",
-    a: 1,
-    b: 2,
-    c: 3,
-  };
+  const [count, setCount] = useState(0);
+  const [light, setLigth] = useState("off");
   return (
     <>
-      <Button {...buttonProps} />
-      <Button text="카페" />
-      <Button text="블로그">
-        {/* <div>자식요소</div>
-         */}
-        <Header />
-      </Button>
+      <div>
+        <h1>{light}</h1>
+        <button
+          onClick={() => {
+            setLigth(light === "off" ? "on" : "off");
+          }}
+        >
+          {light === "off" ? "켜기" : "끄기"}
+        </button>
+      </div>
+      <div>
+        <h1>{count}</h1>
+        <button
+          onClick={() => {
+            setCount(count + 1);
+          }}
+        >
+          +
+        </button>
+      </div>
     </>
   );
 }
