@@ -1,6 +1,11 @@
 export default function Button({ text, color, children }) {
+  //이벤트 객체
+  const onClickButton = (e) => {
+    console.log(text);
+  };
+
   return (
-    <button style={{ color: color }}>
+    <button style={{ color: color }} onClick={onClickButton}>
       {text} - {color.toUpperCase()}
       {children}
     </button>
