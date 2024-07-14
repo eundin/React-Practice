@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Register() {
   const [input, setInput] = useState({
@@ -9,17 +9,29 @@ export default function Register() {
   });
   console.log(input);
 
+  const countRef = useRef(0);
+  const inputRef = useRef(0);
+
   const onChange = (e) => {
+    countRef.current++;
+    console.log(countRef.current);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
   };
 
+  const onSubmit = () => {
+    if (input.name === "") {
+      inputRef.current.focus();
+    }
+  };
+
   return (
     <div>
       <div>
         <input
+          ref={inputRef}
           name="name"
           value={input.name}
           placeholder="이름"
@@ -50,6 +62,7 @@ export default function Register() {
           value={input.bio}
         />
       </div>
+      <button onClick={onSubmit}>제출</button>
     </div>
   );
 }
