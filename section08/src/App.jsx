@@ -27,6 +27,11 @@ function App() {
   const [todos, setTodos] = useState(mock);
   const idRef = useRef(3);
 
+  const onDelete = (targetId) => {
+    //인수: todos 배열에서 targetId와 일치하는 id를 갖는 요소만 삭제한 새로운 배열
+    setTodos(todos.filter((todo) => todo.id !== targetId));
+  };
+
   const onCreate = (content) => {
     const newTodo = {
       id: idRef.current++,
@@ -53,7 +58,7 @@ function App() {
     <div className="App">
       <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} />
+      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   );
 }
