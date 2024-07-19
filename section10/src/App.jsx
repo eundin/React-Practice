@@ -1,4 +1,4 @@
-import { useReducer, useRef, useState } from "react";
+import { useCallback, useReducer, useRef, useState } from "react";
 import "./App.css";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
@@ -45,16 +45,16 @@ function App() {
 
   const idRef = useRef(3);
 
-  const onDelete = (targetId) => {
-    //인수: todos 배열에서 targetId와 일치하는 id를 갖는 요소만 삭제한 새로운 배열
+  // const onDelete = (targetId) => {
+  //   //인수: todos 배열에서 targetId와 일치하는 id를 갖는 요소만 삭제한 새로운 배열
 
-    dispatch({
-      type: "DELETE",
-      targetId,
-    });
-  };
+  //   dispatch({
+  //     type: "DELETE",
+  //     targetId,
+  //   });
+  // };
 
-  const onCreate = (content) => {
+  const onCreate = useCallback((content) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -64,9 +64,9 @@ function App() {
         date: new Date().getTime(),
       },
     });
-  };
+  }, []);
 
-  const onUpdate = (targetId) => {
+  const onUpdate = useCallback((targetId) => {
     //todos State의 값들 중에
     //tartgetId와 일치하는 id를 갖는 투두 아이템의 isDone 변경
 
@@ -75,7 +75,16 @@ function App() {
       type: "UPDATE",
       targetId,
     });
-  };
+  }, []);
+
+  const onDelete = useCallback((targetId) => {
+    //인수: todos 배열에서 targetId와 일치하는 id를 갖는 요소만 삭제한 새로운 배열
+
+    dispatch({
+      type: "DELETE",
+      targetId,
+    });
+  }, []);
 
   return (
     <div className="App">
