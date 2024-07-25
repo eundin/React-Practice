@@ -8,6 +8,7 @@ body {
   margin: 0px;
   width: 100%;
   background-color: rgb(246, 246, 246);
+  display: flex;
 }
 /* main.jsx 스타일링 하려면 #root에다가 해야함 */
 #root {
